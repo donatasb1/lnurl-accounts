@@ -1,0 +1,53 @@
+version: '6'
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: fastapi_server
+    environment:
+      - REDIS_HOST=redis_server
+      - REDIS_PORT=6379
+      - REDIS_PSW=
+      - POSTGRES_HOST=psql_server
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+    ports:
+      - '8080:8080'
+    restart: "no"
+    networks:
+      - mynetwork
+
+  redis:
+    image: redis
+    container_name: redis_server
+    ports:
+      - '6379:6379'
+    restart: "no"
+    networks:
+      - mynetwork
+    command: redis-server --requirepass 
+
+  db:
+    image: postgres
+    container_name: psql_server
+    ports:
+      - '5432:5432'
+    restart: "no"
+    environment:
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  postgres_data:
+    driver: local

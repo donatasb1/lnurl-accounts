@@ -1,0 +1,14 @@
+hdwallet==2.2.1
+bech32==1.2.0
+ecdsa==0.18.0
+httpx==0.25.2
+fastapi==0.108.0
+uvicorn[standard]
+redis[hiredis]==5.0.1
+passlib==1.7.4
+pydantic==2.5.3
+pydantic[email]
+PyJWT==2.8.0
+psycopg==3.1.13
+psycopg-pool==3.2.0
+bcrypt==4.0.1
