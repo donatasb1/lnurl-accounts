@@ -5,5 +5,3 @@
 * Mainnet and LNURL deposit/withdraw REST API
 
 * Public keys only
-
-* *Utxo selector and tx builder not included*
